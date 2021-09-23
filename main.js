@@ -7,15 +7,11 @@ const welcome = console.log(
 	"Welcome to the Mystic Forest. Your goal is to find the Golden Keyboard!\n"
 );
 
-let position = console.log(
+const position = console.log(
 	"You find yourself to a Mystical Forest that is shrouded in fog."
 );
 
-const coordinates = console.log(
-	"> Your coordinates are " + "(" + x + "," + y + ").\n"
-);
-
-const x0y0 = "You've return to the start. Your coordinates are (0, 0).\n";
+const coordinates = console.log("> Your coordinates are (0, 0).\n");
 
 const xNeg1y0 =
 	"\nYou go deeper into the dense forest.\n> Your coordinates are (-1, 0).\n";
@@ -62,6 +58,10 @@ const xNeg2yNeg1 =
 const xNeg2yNeg2 =
 	"\nYou enter a secret passage behind a waterfall.\n> Your coordinates are (-2, -2). \n\nIn the middle of the hidden passage you find the Golden Keyboard. \nYou Have Won The Game!!! \n";
 
+const outOfbounds =
+	"\n    **** OUT OF BOUNDS! ****\n(You were returned to the Start)";
+const x0y0 = "\nYou are at the start.\n> Your coordinates are (0, 0).\n";
+
 while (!(x === -2 && y === -2)) {
 	let direction = prompt(
 		'Would you like to go "up", "right", "down", or "left"? '
@@ -75,6 +75,15 @@ while (!(x === -2 && y === -2)) {
 		y = y + 1;
 	} else if (direction === "down") {
 		y = y - 1;
+	} else {
+		console.log("\n***Error: Invalid Input***");
+	}
+
+	if (Math.abs(x) === 3 || Math.abs(y) === 3) {
+		x = 0;
+		y = 0;
+
+		console.log(outOfbounds);
 	}
 
 	if (x === -1 && y === 0) {
